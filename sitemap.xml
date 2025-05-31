@@ -35,4 +35,17 @@
     <loc>https://nextedgeinnovations.org/hosting.html</loc>
     <priority>0.80</priority>
   </url>
+
+   <!-- Applications Page -->
+  <url>
+    <loc>https://nextedgeinnovations.org/applications.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+   <!-- Tools Page -->
+  <url>
+    <loc>https://nextedgeinnovations.org/tools.html</loc>
+    <priority>0.80</priority>
+  </url>
+  
 </urlset>
