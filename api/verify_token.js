@@ -9,6 +9,8 @@ export default async function handler(req, res) {
 
   const { idToken } = req.body;
 
+  console.log('Received token:', idToken);
+
   if (!idToken) {
     return res.status(400).json({ error: 'Missing ID token' });
   }
@@ -21,9 +23,17 @@ export default async function handler(req, res) {
 
     const payload = ticket.getPayload();
 
-    // Verified user info here
-    return res.status(200).json({ email: payload.email, name: payload.name });
+    console.log('Token payload:', payload);
+
+    // You can customize this to return what you want about the user
+    return res.status(200).json({
+      email: payload.email,
+      name: payload.name,
+      picture: payload.picture,
+      // Any other info you want to send
+    });
   } catch (error) {
+    console.error('Token verification error:', error);
     return res.status(401).json({ error: 'Invalid ID token' });
   }
 }
