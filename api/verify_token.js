@@ -1,3 +1,4 @@
+console.log('755429138864-ko8hlpa2gju85jeaal3u2senfoo62qcc.apps.googleusercontent.com', process.env.GOOGLE_CLIENT_ID);
 import { OAuth2Client } from 'google-auth-library';
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
