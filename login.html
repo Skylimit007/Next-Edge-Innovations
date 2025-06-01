@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+  <h2>Login to continue</h2>
+  <div id="g_id_onload"
+       data-client_id="755429138864-ko8hlpa2gju85jeaal3u2senfoo62qcc.apps.googleusercontent.com.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse"
+       data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin" data-type="standard"></div>
+
+  <script>
+    async function handleCredentialResponse(response) {
+      // Send ID token to backend for verification
+      const res = await fetch('/api/verify-token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idToken: response.credential })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+
+        // Save user data to localStorage (or sessionStorage)
+        localStorage.setItem('user', JSON.stringify(data));
+
+        // Redirect to index.html
+        window.location.href = 'index.html';
+      } else {
+        alert('Login verification failed. Please try again.');
+      }
+    }
+  </script>
+
+</body>
+</html>
