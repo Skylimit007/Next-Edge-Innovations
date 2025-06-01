@@ -1,8 +1,8 @@
-import { OAuth2Client } from 'google-auth-library';
+const { OAuth2Client } = require('google-auth-library');
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -29,4 +29,4 @@ export default async function handler(req, res) {
     console.error('Token verification error:', error);
     return res.status(401).json({ error: error.message || 'Invalid ID token' });
   }
-}
+};
